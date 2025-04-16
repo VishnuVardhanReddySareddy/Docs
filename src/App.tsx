@@ -6,6 +6,7 @@ function App() {
     <>
   
       <h1>hh</h1>
+      <h2>second heading</h2>
       
     </>
   )
