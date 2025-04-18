@@ -1,15 +1,19 @@
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import DocumentListPage from './pages/DocumentListPage';
+import DocumentEditorPage from './pages/DocumentEditorPage';
 
-function App() {
-
+const App: React.FC = () => {
   return (
-    <>
-  
-      <h1>hh</h1>
-      <h2>second heading</h2>
-      
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/docs" element={<DocumentListPage />} />
+        <Route path="/docs/:id" element={<DocumentEditorPage />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
