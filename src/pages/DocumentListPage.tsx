@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const DocumentListPage: React.FC = () => {
   const documents = [
     { id: '1', title: 'My First Document', lastEdited: '2 hours ago' },
