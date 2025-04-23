@@ -8,7 +8,6 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "server": "nodemon --watch . --exec vite",
-
     "preview": "vite preview"
   },
   "dependencies": {
@@ -68,6 +67,7 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.488.0",
+    "next": "^15.3.1",
     "next-themes": "^0.4.6",
     "react": "^19.1.0",
     "react-color": "^2.19.3",
@@ -90,8 +90,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@tailwindcss/postcss": "^4.1.4",
     "@types/node": "^22.14.1",
     "@types/react": "^19.0.10",
+    "@types/react-color": "^3.0.13",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.21",

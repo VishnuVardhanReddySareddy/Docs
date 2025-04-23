@@ -15,7 +15,7 @@ const DocumentListPage: React.FC = () => {
         <h1 className="text-2xl font-bold text-gray-800">My Documents</h1>
         <Link 
           to="/docs/new" 
-          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md font-medium transition-colors"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md font-medium transition-colors"
         >
           + New Document
         </Link>
@@ -28,7 +28,7 @@ const DocumentListPage: React.FC = () => {
             to={`/docs/${doc.id}`}
             className="group"
           >
-            <div className="relative h-[280px] bg-white border border-gray-200 rounded-md hover:border-green-300 transition-colors shadow-sm hover:shadow-md">
+            <div className="relative h-[280px] bg-white border border-gray-200 rounded-md hover:border-blue-300 transition-colors shadow-sm hover:shadow-md">
               {/* Paper-like document preview */}
               <div className="absolute inset-0 p-4 flex flex-col">
                 {/* Document header */}
@@ -50,7 +50,7 @@ const DocumentListPage: React.FC = () => {
                 {/* Document footer */}
                 <div className="text-xs text-gray-500 mt-2 flex justify-between items-center">
                   <span>Last edited {doc.lastEdited}</span>
-                  <span className="text-green-500">Docs</span>
+                  <span className="text-blue-500">Docs</span>
                 </div>
               </div>
             </div>
@@ -60,11 +60,11 @@ const DocumentListPage: React.FC = () => {
         {/* New Document Card */}
         <Link 
           to="/docs/new" 
-          className="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg hover:border-green-400 hover:bg-green-50 transition-colors h-[280px]"
+          className="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors h-[280px]"
         >
           <div className="text-center p-4">
-            <div className="mx-auto bg-green-100 rounded-full w-12 h-12 flex items-center justify-center mb-2">
-              <span className="text-2xl text-green-500">+</span>
+            <div className="mx-auto bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mb-2">
+              <span className="text-2xl text-blue-500">+</span>
             </div>
             <span className="text-gray-600">New Document</span>
           </div>
