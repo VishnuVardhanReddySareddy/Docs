@@ -10,6 +10,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/docs" element={<DocumentListPage />} />
+        <Route path="/docs/new" element={<DocumentEditorPage />} />
         <Route path="/docs/:id" element={<DocumentEditorPage />} />
       </Routes>
     </Router>
