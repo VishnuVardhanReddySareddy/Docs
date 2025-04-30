@@ -74,7 +74,7 @@ const LineHeightButton = () => {
           <ListCollapseIcon className="size-4" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="p-1 flex flex-col gap-y-1">
+      <DropdownMenuContent className="p-1 flex flex-col gap-y-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 border border-gray-200 rounded-md shadow-lg z-50 border border-gray-200 rounded-md shadow-lg z-50">
         {lineHeights.map(({ label, value }) => (
           <button
             key={value}
@@ -204,7 +204,7 @@ const ListButton = () => {
           <ListIcon className="size-4" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="p-1 flex flex-col gap-y-1">
+      <DropdownMenuContent className="p-1 flex flex-col gap-y-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 border border-gray-200 rounded-md shadow-lg z-50 border border-gray-200 rounded-md shadow-lg z-50">
         {lists.map(({ label, icon: Icon, onClick, isActive }) => (
           <button
             key={label}
@@ -256,7 +256,7 @@ const AlignButton = () => {
           <AlignLeftIcon className="size-4" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="p-1 flex flex-col gap-y-1">
+      <DropdownMenuContent className="p-1 flex flex-col gap-y-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 border border-gray-200 rounded-md shadow-lg z-50 border border-gray-200 rounded-md shadow-lg z-50">
         {alignments.map(({ label, value, icon: Icon }) => (
           <button
             key={value}
@@ -280,7 +280,7 @@ const ImageButton = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
 
-  console.log(editor?.getAttributes("link").href, "TEST");
+  // console.log(editor?.getAttributes("link").href, "TEST");
 
   const onChange = (src: string) => {
     editor?.chain().focus().setImage({ src }).run();
@@ -332,7 +332,7 @@ const ImageButton = () => {
       </DropdownMenu>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
+        <DialogContent className="bg-white">
           <DialogHeader>
             <DialogTitle>Insert image URL</DialogTitle>
           </DialogHeader>
@@ -359,7 +359,7 @@ const LinkButton = () => {
   const { editor } = useEditorStore();
   const [value, setValue] = useState("");
 
-  console.log(editor?.getAttributes("link").href, "TEST");
+  // console.log(editor?.getAttributes("link").href, "TEST");
 
   const onChange = (href: string) => {
     editor?.chain().focus().extendMarkRange("link").setLink({ href }).run();
@@ -407,8 +407,10 @@ const HighlightColorButton = () => {
           <HighlighterIcon className="size-4" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="p-0 border-0">
-        <SketchPicker color={value} onChange={onChange} />
+      <DropdownMenuContent className="p-0 border-0 bg-white rounded-md shadow-lg">
+        <div className="bg-white">
+          <SketchPicker color={value} onChange={onChange} />
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -431,7 +433,7 @@ const TextColorButton = () => {
           <div className="h-0.5 w-full" style={{ backgroundColor: value }}></div>
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="p-0 border-0">
+      <DropdownMenuContent className="p-0 border-0 bg-white rounded-md shadow-lg">
         <SketchPicker color={value} onChange={onChange} />
       </DropdownMenuContent>
     </DropdownMenu>
@@ -468,7 +470,7 @@ const HeadingLevelButton = () => {
           <ChevronDownIcon className="ml-2 size-4 shrink-0" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="p-1 flex flex-col gap-y-1">
+      <DropdownMenuContent className="p-1 flex flex-col gap-y-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 border border-gray-200 rounded-md shadow-lg z-50">
         {headings.map(({ label, value, fontSize }) => (
           <button
             key={value}
@@ -519,7 +521,7 @@ export const FontFamilyButton = () => {
           <ChevronDownIcon className="ml-2 size-4 shrink-0" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="p-1 flex flex-col gap-y-1">
+      <DropdownMenuContent className="p-1 flex flex-col gap-y-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 border border-gray-200 rounded-md shadow-lg z-50 border border-gray-200 rounded-md shadow-lg z-50">
         {fonts.map(({ label, value }) => (
           <button
             onClick={() => editor?.chain().focus().setFontFamily(value).run()}
