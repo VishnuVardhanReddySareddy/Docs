@@ -55,7 +55,7 @@ export const Navbar = () => {
     const blob = new Blob([JSON.stringify(content)], {
       type: "application/json",
     });
-    onDownload(blob, `document.json`); // TODO: User document name
+    onDownload(blob, `document.json`);
   };
 
   const onSaveHTML = () => {
@@ -65,7 +65,7 @@ export const Navbar = () => {
     const blob = new Blob([content], {
       type: "text/html",
     });
-    onDownload(blob, `document.html`); // TODO: User document name
+    onDownload(blob, `document.html`);
   };
 
   const onSaveText = () => {
@@ -75,7 +75,7 @@ export const Navbar = () => {
     const blob = new Blob([content], {
       type: "text/plain",
     });
-    onDownload(blob, `document.txt`); // TODO: User document name
+    onDownload(blob, `document.txt`);
   };
 
   return (
@@ -92,45 +92,45 @@ export const Navbar = () => {
                 <MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
                   File
                 </MenubarTrigger>
-                <MenubarContent className="print:hidden">
+                <MenubarContent className="print:hidden bg-white border border-gray-200 rounded-md shadow-lg">
                   <MenubarSub>
-                    <MenubarSubTrigger>
+                    <MenubarSubTrigger className="bg-white hover:bg-gray-100">
                       <FileIcon className="size-4 mr-2" /> Save
                     </MenubarSubTrigger>
-                    <MenubarSubContent>
-                      <MenubarItem onClick={onSaveJson}>
+                    <MenubarSubContent className="bg-white border border-gray-200 rounded-md shadow-lg">
+                      <MenubarItem onClick={onSaveJson} className="hover:bg-gray-100">
                         <FileJsonIcon className="size-4 mr-2" />
                         JSON
                       </MenubarItem>
-                      <MenubarItem onClick={onSaveHTML}>
+                      <MenubarItem onClick={onSaveHTML} className="hover:bg-gray-100">
                         <GlobeIcon className="size-4 mr-2" />
                         HTML
                       </MenubarItem>
-                      <MenubarItem onClick={() => window.print()}>
+                      <MenubarItem onClick={() => window.print()} className="hover:bg-gray-100">
                         <BsFilePdf className="size-4 mr-2" />
                         PDF
                       </MenubarItem>
-                      <MenubarItem onClick={onSaveText}>
+                      <MenubarItem onClick={onSaveText} className="hover:bg-gray-100">
                         <FileTextIcon className="size-4 mr-2" />
                         Text
                       </MenubarItem>
                     </MenubarSubContent>
                   </MenubarSub>
-                  <MenubarItem>
+                  <MenubarItem className="hover:bg-gray-100">
                     <FilePlusIcon className="mr-2 size-4" />
                     New Document
                   </MenubarItem>
-                  <MenubarSeparator />
-                  <MenubarItem>
+                  <MenubarSeparator className="bg-gray-200" />
+                  <MenubarItem className="hover:bg-gray-100">
                     <FilePenIcon className="mr-2 size-4" />
                     Rename
                   </MenubarItem>
-                  <MenubarItem>
+                  <MenubarItem className="hover:bg-gray-100">
                     <TrashIcon className="mr-2 size-4" />
                     Remove
                   </MenubarItem>
-                  <MenubarSeparator />
-                  <MenubarItem onClick={() => window.print()}>
+                  <MenubarSeparator className="bg-gray-200" />
+                  <MenubarItem onClick={() => window.print()} className="hover:bg-gray-100">
                     <PrinterIcon className="mr-2 size-4" />
                     Print <MenubarShortcut>&#x2318; + P</MenubarShortcut>
                   </MenubarItem>
@@ -140,12 +140,18 @@ export const Navbar = () => {
                 <MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
                   Edit
                 </MenubarTrigger>
-                <MenubarContent>
-                  <MenubarItem onClick={() => editor?.chain().focus().undo().run()}>
+                <MenubarContent className="bg-white border border-gray-200 rounded-md shadow-lg">
+                  <MenubarItem 
+                    onClick={() => editor?.chain().focus().undo().run()} 
+                    className="hover:bg-gray-100"
+                  >
                     <Undo2Icon className="mr-2 size-4" />
                     Undo <MenubarShortcut>&#x2318; + Z</MenubarShortcut>
                   </MenubarItem>
-                  <MenubarItem onClick={() => editor?.chain().focus().redo().run()}>
+                  <MenubarItem 
+                    onClick={() => editor?.chain().focus().redo().run()} 
+                    className="hover:bg-gray-100"
+                  >
                     <Redo2Icon className="mr-2 size-4" />
                     Redo <MenubarShortcut>&#x2318; + Y</MenubarShortcut>
                   </MenubarItem>
@@ -155,20 +161,32 @@ export const Navbar = () => {
                 <MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
                   Insert
                 </MenubarTrigger>
-                <MenubarContent>
+                <MenubarContent className="bg-white border border-gray-200 rounded-md shadow-lg">
                   <MenubarSub>
-                    <MenubarSubTrigger>Table</MenubarSubTrigger>
-                    <MenubarSubContent>
-                      <MenubarItem onClick={() => insertTable({ rows: 1, cols: 1 })}>
+                    <MenubarSubTrigger className="hover:bg-gray-100">Table</MenubarSubTrigger>
+                    <MenubarSubContent className="bg-white border border-gray-200 rounded-md shadow-lg">
+                      <MenubarItem 
+                        onClick={() => insertTable({ rows: 1, cols: 1 })} 
+                        className="hover:bg-gray-100"
+                      >
                         1 x 1
                       </MenubarItem>
-                      <MenubarItem onClick={() => insertTable({ rows: 2, cols: 2 })}>
+                      <MenubarItem 
+                        onClick={() => insertTable({ rows: 2, cols: 2 })} 
+                        className="hover:bg-gray-100"
+                      >
                         2 x 2
                       </MenubarItem>
-                      <MenubarItem onClick={() => insertTable({ rows: 4, cols: 4 })}>
+                      <MenubarItem 
+                        onClick={() => insertTable({ rows: 4, cols: 4 })} 
+                        className="hover:bg-gray-100"
+                      >
                         4 x 4
                       </MenubarItem>
-                      <MenubarItem onClick={() => insertTable({ rows: 4, cols: 6 })}>
+                      <MenubarItem 
+                        onClick={() => insertTable({ rows: 4, cols: 6 })} 
+                        className="hover:bg-gray-100"
+                      >
                         4 x 6
                       </MenubarItem>
                     </MenubarSubContent>
@@ -179,32 +197,47 @@ export const Navbar = () => {
                 <MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
                   Format
                 </MenubarTrigger>
-                <MenubarContent>
+                <MenubarContent className="bg-white border border-gray-200 rounded-md shadow-lg">
                   <MenubarSub>
-                    <MenubarSubTrigger>
+                    <MenubarSubTrigger className="hover:bg-gray-100">
                       <TextIcon className="size-4 mr-2" />
                       Text
                     </MenubarSubTrigger>
-                    <MenubarSubContent>
-                      <MenubarItem onClick={() => editor?.chain().focus().toggleBold().run()}>
+                    <MenubarSubContent className="bg-white border border-gray-200 rounded-md shadow-lg">
+                      <MenubarItem 
+                        onClick={() => editor?.chain().focus().toggleBold().run()} 
+                        className="hover:bg-gray-100"
+                      >
                         <BoldIcon className="size-4 mr-2" />
                         Bold
                       </MenubarItem>
-                      <MenubarItem onClick={() => editor?.chain().focus().toggleItalic().run()}>
+                      <MenubarItem 
+                        onClick={() => editor?.chain().focus().toggleItalic().run()} 
+                        className="hover:bg-gray-100"
+                      >
                         <ItalicIcon className="size-4 mr-2" />
                         Italic
                       </MenubarItem>
-                      <MenubarItem onClick={() => editor?.chain().focus().toggleUnderline().run()}>
+                      <MenubarItem 
+                        onClick={() => editor?.chain().focus().toggleUnderline().run()} 
+                        className="hover:bg-gray-100"
+                      >
                         <UnderlineIcon className="size-4 mr-2" />
                         Underline
                       </MenubarItem>
-                      <MenubarItem onClick={() => editor?.chain().focus().toggleStrike().run()}>
+                      <MenubarItem 
+                        onClick={() => editor?.chain().focus().toggleStrike().run()} 
+                        className="hover:bg-gray-100"
+                      >
                         <StrikethroughIcon className="size-4 mr-2" />
                         Strikethrough
                       </MenubarItem>
                     </MenubarSubContent>
                   </MenubarSub>
-                  <MenubarItem onClick={() => editor?.chain().focus().unsetAllMarks().run()}>
+                  <MenubarItem 
+                    onClick={() => editor?.chain().focus().unsetAllMarks().run()} 
+                    className="hover:bg-gray-100"
+                  >
                     <RemoveFormattingIcon className="size-4 mr-2" />
                     Clear formatting
                   </MenubarItem>
