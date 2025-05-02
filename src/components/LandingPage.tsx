@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
+import { FaGithub, FaEnvelope } from 'react-icons/fa';
 
 const LandingPage: React.FC = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authView, setAuthView] = useState<'options' | 'login' | 'signup'>('options');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Header */}
       <header className="flex justify-between items-center p-4 border-b border-gray-200">
         <div className="flex items-center">
-        <img src="/logo.svg" alt="logo" width={36} height={36} />
+          <img src="/logo.svg" alt="logo" width={36} height={36} />
           <span className="ml-2 text-2xl font-medium text-gray-700">Docs</span>
         </div>
         <button 
-      onClick={() => navigate('/docs')}
-      className="bg-blue-500 hover:bg-blue-600 blue-white px-4 py-2 rounded-md font-medium transition-colors"
-    >
-      Go to Docs
-    </button>
+          onClick={() => setShowAuthModal(true)}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md font-medium transition-colors"
+        >
+          Sign In
+        </button>
       </header>
+
 
       {/* Hero Section */}
       <section className="flex-grow flex flex-col items-center justify-center text-center p-8 max-w-4xl mx-auto">
@@ -30,11 +37,11 @@ const LandingPage: React.FC = () => {
           online while collaborating with other users in real-time.
         </p>
         <button 
-      onClick={() => navigate('/docs/new')}
-      className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-md font-medium text-lg transition-colors"
-    >
-      Get Started
-    </button>
+          onClick={() => navigate('/docs/new')}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-md font-medium text-lg transition-colors"
+        >
+          Get Started
+        </button>
       </section>
 
       {/* Features Section */}
@@ -87,6 +94,172 @@ const LandingPage: React.FC = () => {
       <footer className="py-6 text-center text-gray-500 text-sm border-t border-gray-200">
         Google Docs clone © {new Date().getFullYear()}
       </footer>
+
+      {showAuthModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            {authView === 'options' ? (
+              <>
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-2xl font-bold">Sign in to Docs</h2>
+                  <button 
+                    onClick={() => setShowAuthModal(false)} 
+                    className="text-gray-500 hover:text-gray-700"
+                  >
+                    &times;
+                  </button>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex flex-col space-y-3">
+                    <GoogleLogin
+                      onSuccess={() => {
+                        console.log('Google login success');
+                        setShowAuthModal(false);
+                      }}
+                      onError={() => console.log('Google login failed')}
+                    />
+                    
+                    <button 
+                      onClick={() => console.log('GitHub login clicked')}
+                      className="flex items-center justify-center space-x-2 bg-gray-800 text-white p-2 rounded hover:bg-gray-700"
+                    >
+                      <FaGithub />
+                      <span>Continue with GitHub</span>
+                    </button>
+                    
+                    <button 
+                      onClick={() => setAuthView('login')}
+                      className="flex items-center justify-center space-x-2 border border-gray-300 p-2 rounded hover:bg-gray-50"
+                    >
+                      <FaEnvelope />
+                      <span>Continue with Email</span>
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : authView === 'login' ? (
+              <>
+                <div className="flex items-center mb-4">
+                  <button 
+                    onClick={() => setAuthView('options')}
+                    className="text-gray-500 hover:text-gray-700 mr-2"
+                  >
+                    ←
+                  </button>
+                  <h2 className="text-2xl font-bold">Sign in with Email</h2>
+                </div>
+                
+                <form>
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                        Email
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full border border-gray-300 rounded-md shadow-sm p-2"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                        Password
+                      </label>
+                      <input
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full border border-gray-300 rounded-md shadow-sm p-2"
+                      />
+                    </div>
+                    
+                    <button
+                      type="button"
+                      className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                    >
+                      Sign In
+                    </button>
+                    
+                    <div className="text-center">
+                      <button 
+                        type="button"
+                        onClick={() => setAuthView('signup')}
+                        className="text-blue-500 hover:text-blue-700 text-sm"
+                      >
+                        Don't have an account? Sign up
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center mb-4">
+                  <button 
+                    onClick={() => setAuthView('options')}
+                    className="text-gray-500 hover:text-gray-700 mr-2"
+                  >
+                    ←
+                  </button>
+                  <h2 className="text-2xl font-bold">Create an Account</h2>
+                </div>
+                
+                <form>
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor="signup-email" className="block text-sm font-medium text-gray-700 mb-1">
+                        Email
+                      </label>
+                      <input
+                        id="signup-email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full border border-gray-300 rounded-md shadow-sm p-2"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="signup-password" className="block text-sm font-medium text-gray-700 mb-1">
+                        Password
+                      </label>
+                      <input
+                        id="signup-password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full border border-gray-300 rounded-md shadow-sm p-2"
+                      />
+                    </div>
+                    
+                    <button
+                      type="button"
+                      className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                    >
+                      Sign Up
+                    </button>
+                    
+                    <div className="text-center">
+                      <button 
+                        type="button"
+                        onClick={() => setAuthView('login')}
+                        className="text-blue-500 hover:text-blue-700 text-sm"
+                      >
+                        Already have an account? Sign in
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

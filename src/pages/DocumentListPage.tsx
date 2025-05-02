@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SearchInput } from './SearchInput';
-import { SearchIcon } from 'lucide-react'; // Make sure to import SearchIcon
+import { SearchIcon } from 'lucide-react'; 
 
 const DocumentListPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Sample documents data
   const allDocuments = [
     { id: '1', title: 'My First Document', lastEdited: '2 hours ago' },
     { id: '2', title: 'Project Ideas', lastEdited: '1 day ago' },
